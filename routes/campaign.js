@@ -38,7 +38,7 @@ async function sendMails(campaign){
       const templateBody = handlebars.compile(campaign.emailBody);
       const mailBody = templateBody({name: campaign.recipients[i].name});
 
-      console.log(getFullTemplate(mailBody, campaign.recipients[i].email, campaign._id));
+      // console.log(getFullTemplate(mailBody, campaign.recipients[i].email, campaign._id));
     
       var mailOptions = {
         from: `"Isah Saidu" <${process.env.EMAIL}>`,
@@ -147,7 +147,7 @@ function filterAnchorTag(html, email, campaignId){
 
     let str = new URLSearchParams(obj);
 
-    html = html.replace(`href="${link}"`, `${process.env.FRONTEND_URL}/redirect?${str.toString()}"`);
+    html = html.replace(`href="${link}"`, `href="${process.env.FRONTEND_URL}/redirect?${str.toString()}"`);
   });
 
   return html;
