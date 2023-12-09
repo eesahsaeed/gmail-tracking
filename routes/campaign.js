@@ -90,7 +90,8 @@ router.get("/process-opened/:campaignId/:emailAddress", async function(req, res)
 
     const campaign = await Campaign.findById(campaignId);
 
-    processTracking(campaign, emailAddress, "opened")
+    processTracking(campaign, emailAddress, "opened");
+    
     res.json({success: true})
   } catch(er){
     console.log(er);
@@ -118,13 +119,14 @@ async function processTracking(campaign, email, type){
 
 router.get("/process-clicked", async function(req, res){
   try{
+    res.json({success: true})
+
     let {campaignId, emailAddress, link} = req.query;
 
     const campaign = await Campaign.findById(campaignId);
 
     processTracking(campaign, emailAddress, "clicked")
 
-    res.json({success: true})
   } catch(err){
     console.log(err);
   }
