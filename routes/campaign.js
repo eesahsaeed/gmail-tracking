@@ -145,7 +145,7 @@ function filterAnchorTag(html, email, campaignId){
 
     let str = new URLSearchParams(obj);
 
-    html = html.replace(`href="${link}"`, `${frontendUrl}/redirect?${str.toString()}"`);
+    html = html.replace(`href="${link}"`, `${process.env.FRONTEND_URL}/#/redirect?${str.toString()}"`);
   });
 
   return html;
@@ -165,7 +165,6 @@ function getFullTemplate(body, email, campaign, sender){
       <body>
         ${filterAnchorTag(body, email, campaign._id)}
         <br/>
-        <p>If you want to unsubscribe - <a href="${process.env.FRONTEND_URL}/unsubscribe/${campaign._id}/${email}" rel="noopener noreferrer" target="_blank">click here</a></p>
         <span style="display: none">${campaign._id}</span>
         <p>
           <img src="${process.env.BACKEND_URL}/campaign/process-opened/${campaign._id}/${email}" style="display: none"/>
